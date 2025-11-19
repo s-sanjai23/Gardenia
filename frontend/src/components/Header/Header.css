@@ -1,0 +1,167 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d8e0d8;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2d6a4f; /* Dark green */
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin-left: 2rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1b4332; /* Darker green */
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav a:hover {
+  color: #52b788; /* Lighter green */
+}
+
+.cart-badge {
+  background-color: #e63946; /* Red */
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  position: absolute;
+  top: -10px;
+  right: -20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4f0;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.search-bar input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 200px;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+.auth-links a {
+  text-decoration: none;
+  color: #1b4332; /* Darker green */
+  font-weight: 500;
+  margin-left: 2rem;
+  transition: color 0.3s;
+}
+
+.auth-links a:hover {
+  color: #52b788; /* Lighter green */
+}
+
+.notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b4332; /* Darker green */
+}
+
+.notification-icon svg {
+  stroke: currentColor;
+}
+
+/* User Menu Dropdown */
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #1b4332;
+  margin-left: 2rem; /* Align with other auth links */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  width: 160px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eee;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background-color: #f0f4f0;
+}
+
+.login-link {
+  text-decoration: none;
+  color: #1b4332;
+  font-weight: 500;
+  margin-left: 2rem;
+  transition: color 0.3s;
+}
+
+.login-link:hover {
+  color: #52b788;
+}

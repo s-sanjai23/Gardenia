@@ -1,0 +1,70 @@
+.settings-page {
+  display: flex;
+  min-height: calc(100vh - 80px); /* Full height minus header */
+  background-color: #f9fbf9;
+}
+
+.settings-sidebar {
+  width: 280px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 2rem;
+}
+
+.settings-sidebar-header {
+  margin-bottom: 2rem;
+}
+
+.settings-sidebar-header h3 {
+  font-size: 1.5rem;
+  color: #2d6a4f; /* Dark green */
+}
+
+.settings-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settings-nav li {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.settings-nav li:hover {
+  background-color: #f0f4f0;
+}
+
+.settings-nav li.active {
+  background-color: #d8e0d8;
+  color: #1b4332; /* Darker green */
+  font-weight: 600;
+}
+
+.settings-nav li svg {
+  margin-right: 1rem;
+  stroke-width: 2;
+}
+
+.settings-content {
+  flex-grow: 1;
+  padding: 3rem;
+  background-color: #f9fbf9;
+}
+
+.settings-content h2 {
+  font-size: 2rem;
+  color: #2d6a4f; /* Dark green */
+  margin-bottom: 1rem;
+}
+
+.settings-content p {
+  font-size: 1.1rem;
+  color: #555;
+}

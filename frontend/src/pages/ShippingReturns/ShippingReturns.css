@@ -1,0 +1,30 @@
+.shipping-returns-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .shipping-returns-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .shipping-policy, .returns-policy {
+    margin-bottom: 2rem;
+  }
+  
+  .shipping-policy h2, .returns-policy h2 {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+  }
+  
+  .shipping-policy ul, .returns-policy ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+  }
+  
+  .shipping-policy li, .returns-policy li {
+    margin-bottom: 0.5rem;
+  }
+  
