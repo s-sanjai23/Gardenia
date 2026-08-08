@@ -1,15 +1,16 @@
 {
-  "name": "backend",
+  "name": "gardenia-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Gardenia full-stack application backend",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "node server.js",
     "seed": "node seed.js",
     "seed:destroy": "node seed.js -d"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["gardenia", "express", "mongodb"],
+  "author": "Sanjai S",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
