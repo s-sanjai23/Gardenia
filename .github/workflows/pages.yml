@@ -1,0 +1,55 @@
+name: Deploy Gardenia to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Find website directory
+        id: site
+        shell: bash
+        run: |
+          set -e
+          site_dir="."
+          index_file="$(find . -type f -name 'index.html' \
+            -not -path './.git/*' \
+            -not -path './.github/*' \
+            -not -path '*/node_modules/*' | head -n 1 || true)"
+
+          if [ -n "$index_file" ]; then
+            site_dir="$(dirname "$index_file")"
+          fi
+
+          echo "path=$site_dir" >> "$GITHUB_OUTPUT"
+          echo "Publishing: $site_dir"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ steps.site.outputs.path }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
