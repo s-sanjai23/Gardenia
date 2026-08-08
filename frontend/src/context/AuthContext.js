@@ -3,6 +3,10 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
+// Set REACT_APP_API_URL in the deployment environment for production.
+// Local development falls back to the existing Express server.
+const API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -18,73 +22,52 @@ export const AuthProvider = ({ children }) => {
     } else {
       delete axios.defaults.headers.common['x-auth-token'];
       localStorage.removeItem('token');
+      setIsLoggedIn(false);
     }
   }, [token]);
 
   const loadUser = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/me');
+      const res = await axios.get(`${API_URL}/api/users/me`);
       setUser(res.data);
       setIsLoggedIn(true);
     } catch (err) {
-      console.error("Failed to load user", err);
-      setToken(null); // This will clear the invalid token
+      console.error('Failed to load user', err);
+      setToken(null);
     }
   };
 
   const login = async ({ email, password }) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const body = JSON.stringify({ email, password });
-
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', body, config);
+      const res = await axios.post(`${API_URL}/api/users/login`, { email, password }, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       setToken(res.data.token);
-      setIsLoggedIn(true); // Set logged in state immediately
+      setIsLoggedIn(true);
+      return { success: true, data: res.data };
     } catch (err) {
-      if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error(err.response.data);
-      } else if (err.request) {
-        // The request was made but no response was received
-        console.error('No response received from server. Is the backend running?');
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error('Error', err.message);
-      }
+      console.error('Login failed:', err.response?.data || err.message);
+      return {
+        success: false,
+        message: err.response?.data?.msg || err.response?.data?.message || 'Login failed',
+      };
     }
   };
 
   const register = async (userData) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const body = JSON.stringify(userData);
-
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', body, config);
+      const res = await axios.post(`${API_URL}/api/users/register`, userData, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       setToken(res.data.token);
-      setIsLoggedIn(true); // Set logged in state immediately
+      setIsLoggedIn(true);
+      return { success: true, data: res.data };
     } catch (err) {
-      if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error(err.response.data);
-      } else if (err.request) {
-        // The request was made but no response was received
-        console.error('No response received from server. Is the backend running?');
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error('Error', err.message);
-      }
+      console.error('Registration failed:', err.response?.data || err.message);
+      return {
+        success: false,
+        message: err.response?.data?.msg || err.response?.data?.message || 'Registration failed',
+      };
     }
   };
 
@@ -101,6 +84,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     register,
+    apiUrl: API_URL,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
