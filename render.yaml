@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gardenia-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: FRONTEND_URL
+        value: https://s-sanjai23.github.io/Gardenia
