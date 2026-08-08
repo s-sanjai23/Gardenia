@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
-import { OrderProvider } from './context/OrderContext'; // Import OrderProvider
+import { OrderProvider } from './context/OrderContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
@@ -19,7 +19,6 @@ import CareGuide from './pages/CareGuide/CareGuide';
 import ContactUs from './pages/ContactUs/ContactUs';
 import Faqs from './pages/Faqs/Faqs';
 import ShippingReturns from './pages/ShippingReturns/ShippingReturns';
-
 import Settings from './pages/Settings/Settings';
 import EditProfile from './pages/EditProfile/EditProfile';
 import ChangePassword from './pages/ChangePassword/ChangePassword';
@@ -62,8 +61,8 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <OrderProvider> {/* Wrap with OrderProvider */}
-          <Router>
+        <OrderProvider>
+          <Router basename="/Gardenia">
             <AppContent />
           </Router>
         </OrderProvider>
